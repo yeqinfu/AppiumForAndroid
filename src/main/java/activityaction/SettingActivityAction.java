@@ -10,19 +10,20 @@ public class SettingActivityAction extends BaseActivityAction{
     }
 
     public void popCurrentActivity() {
-        driver.findElementById("title_left").click();
+        clickDelay("title_left");
 
     }
 
     public void toLoginActivity() {
-        driver.findElementById("rlLogout").click();
+        clickDelay("rlLogout");
 
     }
 
     public void parseIP(TestIP ip) {
+
         driver.findElementById("iivIP").findElement(By.id("etCenter")).sendKeys(ip.getIp());
         driver.findElementById("iivPort").findElement(By.id("etCenter")).sendKeys(ip.getIp());
-        driver.findElementById("tvSubmit").click();
+        clickDelay("tvSubmit");
 
 
     }

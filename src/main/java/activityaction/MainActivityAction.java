@@ -20,14 +20,11 @@ public class MainActivityAction extends BaseActivityAction{
      * 去登录页面
      */
     public void toLoginActivity() {
-        driver.findElementById("rBtnTabMe").click();
-        try {
-            Thread.sleep(1000);
-            driver.findElementById("rlSetting").click();
-            new SettingActivityAction(driver).toLoginActivity();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        clickDelay("rBtnTabMe");
+        clickDelay("rlSetting");
+        new SettingActivityAction(driver).toLoginActivity();
+
+
 
     }
 

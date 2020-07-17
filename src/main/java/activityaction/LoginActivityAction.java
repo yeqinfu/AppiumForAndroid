@@ -28,7 +28,7 @@ public class LoginActivityAction extends BaseActivityAction{
         SettingActivityAction settingActivityAction=new SettingActivityAction(driver);
         settingActivityAction.parseIP(ip);
         parseAccount(account);
-        driver.findElementById("btnLogin").click();
+        clickDelay("btnLogin");
 
 
     }
