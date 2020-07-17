@@ -25,8 +25,10 @@ public class LoginActivityAction extends BaseActivityAction{
     public void startLogin(TestIP ip, TestAccount account) {
         //设置IP 端口
         toNetSettingActivity();
+        sleep();
         SettingActivityAction settingActivityAction=new SettingActivityAction(driver);
         settingActivityAction.parseIP(ip);
+        sleep();
         parseAccount(account);
         clickDelay("btnLogin");
 

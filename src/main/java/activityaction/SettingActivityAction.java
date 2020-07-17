@@ -21,8 +21,8 @@ public class SettingActivityAction extends BaseActivityAction{
 
     public void parseIP(TestIP ip) {
 
-        driver.findElementById("iivIP").findElement(By.id("etCenter")).sendKeys(ip.getIp());
-        driver.findElementById("iivPort").findElement(By.id("etCenter")).sendKeys(ip.getIp());
+       // driver.findElementById("iivIP").findElement(By.id("etCenter")).sendKeys(ip.getIp());
+       // driver.findElementById("iivPort").findElement(By.id("etCenter")).sendKeys(ip.getIp());
         clickDelay("tvSubmit");
 
 

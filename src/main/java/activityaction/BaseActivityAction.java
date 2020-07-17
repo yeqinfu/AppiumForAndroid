@@ -20,4 +20,12 @@ public abstract class BaseActivityAction implements ActivityAction{
         driver.findElementById(id).click();
     }
 
+    protected void sleep(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

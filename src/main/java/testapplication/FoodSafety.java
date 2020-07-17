@@ -51,8 +51,9 @@ public class FoodSafety implements TestApplication {
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
         //加入一个登录测试流程
-        list.add(new LoginTestFlow(driver,ip,account));
         list.add(new LogoutTestFlow(driver));
+
+        list.add(new LoginTestFlow(driver,ip,account));
     }
 
 
