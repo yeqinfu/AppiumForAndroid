@@ -1,6 +1,9 @@
 package phone;
 
-public interface IPhoneInfo {
+/**
+ * 测试设备对象 的抽象
+ */
+public interface TestDevice {
     String getDeviceName();
     String getAutomationName();
     String getPlatformName();

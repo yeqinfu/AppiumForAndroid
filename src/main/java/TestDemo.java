@@ -1,7 +1,6 @@
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import phone.IPhoneInfo;
+import phone.TestDevice;
 import phone.RedMiNote7;
 
 import java.net.MalformedURLException;
@@ -9,7 +8,7 @@ import java.net.URL;
 
 public class TestDemo {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
-        IPhoneInfo target = new RedMiNote7();
+        TestDevice target = new RedMiNote7();
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("deviceName", target.getDeviceName());

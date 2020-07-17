@@ -1,6 +1,9 @@
 package phone;
 
-public class RedMiNote7 implements IPhoneInfo{
+/**
+ * yeqinfu的手机
+ */
+public class RedMiNote7 implements TestDevice {
 
     public String getDeviceName() {
         return "629b2577";
