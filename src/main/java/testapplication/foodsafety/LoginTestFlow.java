@@ -7,8 +7,6 @@ import io.appium.java_client.android.AndroidDriver;
 import testaccount.TestAccount;
 import testaccount.TestIP;
 import testflow.BaseTestFlow;
-import testflow.TestFlow;
-import utils.Utils;
 
 public class LoginTestFlow extends BaseTestFlow {
 
