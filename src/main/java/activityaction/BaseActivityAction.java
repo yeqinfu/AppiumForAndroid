@@ -10,6 +10,11 @@ public abstract class BaseActivityAction implements ActivityAction{
         this.driver = driver;
     }
 
+    @Override
+    public boolean checkCurrent(ActivityEnum target) {
+        return target==ActivityEnum.getActivityEnumByPath(driver.currentActivity());
+    }
+
     protected void clickDelay(String id){
 
         try {

@@ -28,7 +28,11 @@ public class MainActivityAction extends BaseActivityAction{
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
-        return false;
+        if (child==ActivityEnum.SettingActivity){
+            clickDelay("rBtnTabMe");
+            clickDelay("rlSetting");
+        }
+        return checkCurrent(child);
     }
 
 }

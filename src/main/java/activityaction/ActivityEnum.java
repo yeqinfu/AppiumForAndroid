@@ -2,49 +2,60 @@ package activityaction;
 
 import io.appium.java_client.android.AndroidDriver;
 
-import java.util.LinkedList;
-
 /**
  * 页面路由清单
  */
 public enum ActivityEnum {
-    loginActivity("loginActivity", ".ui.LoginActivity", new ActivityEnum[]{
 
-    }),
-    mainActivity("mainActivity", ".ui.MainActivity", new ActivityEnum[]{
-            loginActivity
-    }),
-    settingActivity("settingActivity", ".ui.me.SettingActivity", new ActivityEnum[]{
-            mainActivity
-    }),
+    SettingActivity("settingActivity", ".ui.me.SettingActivity",
+            new String[]{
+                    ".ui.LoginActivity"
+
+            }),
+    MainActivity("mainActivity", ".ui.MainActivity",
+            new String[]{
+                    SettingActivity.activityPath
+            }
+    ),
+    NetSettingActivity("NetSettingActivity", ".ui.NetSettingActivity",
+            new String[]{
+            }),
+
+    LoginActivity("loginActivity",
+            ".ui.LoginActivity",
+
+            new String[]{
+                    NetSettingActivity.activityPath,
+                    MainActivity.activityPath,
+
+            }),
+    LaunchActivity("launchActivity",
+            ".ui.launchActivity",
+            new String[]{
+                    MainActivity.activityPath,
+                    LoginActivity.activityPath
+            }),
+
+
     ;
     String activity;
     String activityPath;
-    //能进到当前activity的入口列表
-    private ActivityEnum[] parentList;
     //当前activity能进到其他的activity有哪些？
-    private ActivityEnum[] childList;
+    private String[] childList;
 
-    public ActivityEnum[] getParentList() {
-        return parentList;
-    }
-
-    public void setParentList(ActivityEnum[] parentList) {
-        this.parentList = parentList;
-    }
-
-    public ActivityEnum[] getChildList() {
-        return childList;
-    }
-
-    public void setChildList(ActivityEnum[] childList) {
+    ActivityEnum(String activity, String activityPath, String[] childList) {
+        this.activity = activity;
+        this.activityPath = activityPath;
         this.childList = childList;
     }
 
-    ActivityEnum(String activity, String activityPath, ActivityEnum[] parentList) {
-        this.activity = activity;
-        this.activityPath = activityPath;
-        this.parentList = parentList;
+
+    public String[] getChildList() {
+        return childList;
+    }
+
+    public void setChildList(String[] childList) {
+        this.childList = childList;
     }
 
 
@@ -63,11 +74,11 @@ public enum ActivityEnum {
             return null;
         }
         switch (target) {
-            case mainActivity:
+            case MainActivity:
                 return new MainActivityAction(driver);
-            case loginActivity:
+            case LoginActivity:
                 return new LoginActivityAction(driver);
-            case settingActivity:
+            case SettingActivity:
                 return new SettingActivityAction(driver);
         }
 
@@ -77,34 +88,38 @@ public enum ActivityEnum {
 
     /**
      * 判断理论路径是否可行
+     *
      * @param target
      * @return
      */
     public boolean canGoToTarget(ActivityEnum target) {
-        if (this==target){
+        if (this == target) {
             return true;
         }
-        for (ActivityEnum child:childList){
-            if (child.canGoToTarget(target)){
+        for (String child : childList) {
+            ActivityEnum childActivityEnum = ActivityEnum.getActivityEnumByPath(child);
+            if (childActivityEnum.canGoToTarget(target)) {
                 return true;
             }
         }
         return false;
     }
-    public boolean tryGoToTarget(AndroidDriver driver,ActivityEnum target,ActivityEnum[] tempChildList){
+
+    public boolean tryGoToTarget(AndroidDriver driver, ActivityEnum target, String[] tempChildList) {
         //当前就是指定要到的节点
-        if (this==target){
+        if (this == target) {
             return true;
         }
         //孩子节点是否可以进去
-        for (ActivityEnum child:tempChildList){
-            if (child.canGoToTarget(target)){//子列表可以进去
+        for (String child : tempChildList) {
+            ActivityEnum childActivityEnum=ActivityEnum.getActivityEnumByPath(child);
+            if (childActivityEnum.canGoToTarget(target)) {//子列表可以进去
                 //无条件相信
-                ActivityAction childAction=ActivityEnum.getActivityActionByPath(driver,child.activityPath);
-                boolean result=childAction.goToChild(driver,child);
-                if (result){//进入成功
+                ActivityAction childAction = ActivityEnum.getActivityActionByPath(driver, childActivityEnum.activityPath);
+                boolean result = childAction.goToChild(driver, childActivityEnum);
+                if (result) {//进入成功
                     return true;
-                }else{
+                } else {
                     childAction.popCurrentActivity();
                 }
             }

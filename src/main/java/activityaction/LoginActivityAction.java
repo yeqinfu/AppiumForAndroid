@@ -19,8 +19,20 @@ public class LoginActivityAction extends BaseActivityAction{
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
-        return false;
+        if (child==ActivityEnum.NetSettingActivity){//登录页面进入
+            toNetSettingActivity();
+        }else if (child==ActivityEnum.MainActivity){
+            toMainActivity();
+        }
+
+        return checkCurrent(child);
     }
+
+    private void toMainActivity() {
+        clickDelay("btnLogin");
+
+    }
+
 
     public void toNetSettingActivity(){
         driver.findElementById("tvSetting").click();
@@ -34,9 +46,7 @@ public class LoginActivityAction extends BaseActivityAction{
         settingActivityAction.parseIP(ip);
         sleep();
         parseAccount(account);
-        clickDelay("btnLogin");
-
-
+        toMainActivity();
     }
 
     private void parseAccount(TestAccount account) {

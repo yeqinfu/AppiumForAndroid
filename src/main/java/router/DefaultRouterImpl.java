@@ -39,8 +39,9 @@ public class DefaultRouterImpl implements IRouter{
       currentAtion.popCurrentActivity();
       //变成上层节点
       ActivityEnum parentEnum=ActivityEnum.getActivityEnumByPath(driver.currentActivity());
-      for (ActivityEnum parent:parentEnum.getParentList()){
-         if (parent!=currentActivityEnum){//刚从这个子节点倒退回来的，所以这里不用再次遍历
+      for (String parent:parentEnum.getChildList()){
+         ActivityEnum parentActivityEnum=ActivityEnum.getActivityEnumByPath(parent);
+         if (parentActivityEnum!=currentActivityEnum){//刚从这个子节点倒退回来的，所以这里不用再次遍历
             boolean parentResult=currentToTarget(driver,target);
             if (parentResult==true){
                return true;

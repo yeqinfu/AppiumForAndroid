@@ -7,6 +7,7 @@ import io.appium.java_client.android.AndroidDriver;
 import testaccount.TestAccount;
 import testaccount.TestIP;
 import testflow.BaseTestFlow;
+import utils.Utils;
 
 public class LoginTestFlow extends BaseTestFlow {
 
@@ -22,27 +23,23 @@ public class LoginTestFlow extends BaseTestFlow {
     }
 
 
-
-
     public void startTest() {
-        //登录流程
-        ActivityEnum activityEnum=ActivityEnum.getActivityEnumByPath(driver.currentActivity());
-        ActivityAction activityAction= ActivityEnum.getActivityActionByPath(driver,driver.currentActivity());
-        if (activityAction==null){
+        //登录流程第一步 确保在登录页面
+        boolean result = iRouter.currentToTarget(driver, ActivityEnum.LoginActivity);
+        if (result){//确保成功
+            Utils.print("确保了在登录页面");
+        }else{
             return;
         }
-        if (activityEnum!=ActivityEnum.loginActivity){//不是登录页面
-            activityAction.toLoginActivity();
-            activityAction= ActivityEnum.getActivityActionByPath(driver,driver.currentActivity());
-        }
+
+        //登录流程
+        ActivityAction activityAction = ActivityEnum.getActivityActionByPath(driver, driver.currentActivity());
         startLogin(activityAction);
-
-
     }
 
     private void startLogin(ActivityAction activityAction) {
         if (activityAction instanceof LoginActivityAction) {
-            ((LoginActivityAction) activityAction).startLogin(ip,account);
+            ((LoginActivityAction) activityAction).startLogin(ip, account);
         }
     }
 }

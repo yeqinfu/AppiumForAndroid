@@ -11,4 +11,5 @@ public interface ActivityAction {
     //退出当前activity
     void popCurrentActivity();
     boolean goToChild(AndroidDriver driver, ActivityEnum child);
+    boolean checkCurrent(ActivityEnum target);
 }

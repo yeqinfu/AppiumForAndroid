@@ -2,13 +2,11 @@ package router;
 
 import activityaction.ActivityEnum;
 
-import java.util.List;
-
 /**
  * 定义
  */
 public enum  ActivityRouterEnum {
-    login(ActivityEnum.loginActivity, new ActivityEnum[]{ActivityEnum.mainActivity})
+    login(ActivityEnum.LoginActivity, new ActivityEnum[]{ActivityEnum.MainActivity})
     ;
     ActivityEnum activityEnum;
 
