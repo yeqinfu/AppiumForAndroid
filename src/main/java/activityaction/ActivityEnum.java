@@ -1,6 +1,7 @@
 package activityaction;
 
 import io.appium.java_client.android.AndroidDriver;
+import utils.Utils;
 
 /**
  * 页面路由清单
@@ -106,6 +107,8 @@ public enum ActivityEnum {
     }
 
     public boolean tryGoToTarget(AndroidDriver driver, ActivityEnum target, String[] tempChildList) {
+        Utils.print("当前节点"+this.activityPath);
+        Utils.print("目标节点"+target.activityPath);
         //当前就是指定要到的节点
         if (this == target) {
             return true;
@@ -115,12 +118,15 @@ public enum ActivityEnum {
             ActivityEnum childActivityEnum=ActivityEnum.getActivityEnumByPath(child);
             if (childActivityEnum.canGoToTarget(target)) {//子列表可以进去
                 //无条件相信
-                ActivityAction childAction = ActivityEnum.getActivityActionByPath(driver, childActivityEnum.activityPath);
-                boolean result = childAction.goToChild(driver, childActivityEnum);
+                ActivityAction currentAction = ActivityEnum.getActivityActionByPath(driver, activityPath);
+
+                Utils.print("尝试进入当前节点"+this.activityPath+"的子节点"+childActivityEnum.activityPath);
+                boolean result = currentAction.goToChild(driver, childActivityEnum);
                 if (result) {//进入成功
-                    return true;
+                    Utils.print("进入子节点成功"+childActivityEnum.activityPath);
+                    return childActivityEnum.tryGoToTarget(driver,target,childActivityEnum.getChildList());
                 } else {
-                    childAction.popCurrentActivity();
+                    currentAction.popCurrentActivity();
                 }
             }
         }

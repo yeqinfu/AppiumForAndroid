@@ -21,7 +21,10 @@ public class SettingActivityAction extends BaseActivityAction{
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
-        return false;
+        if (child==ActivityEnum.LoginActivity){
+            toLoginActivity();
+        }
+        return checkCurrent(child);
     }
 
     public void parseIP(TestIP ip) {
