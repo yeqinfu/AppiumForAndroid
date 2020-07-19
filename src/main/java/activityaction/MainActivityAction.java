@@ -24,8 +24,11 @@ public class MainActivityAction extends BaseActivityAction{
         clickDelay("rlSetting");
         new SettingActivityAction(driver).toLoginActivity();
 
+    }
 
-
+    @Override
+    public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
+        return false;
     }
 
 }

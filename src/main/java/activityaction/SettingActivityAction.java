@@ -19,6 +19,11 @@ public class SettingActivityAction extends BaseActivityAction{
 
     }
 
+    @Override
+    public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
+        return false;
+    }
+
     public void parseIP(TestIP ip) {
 
        // driver.findElementById("iivIP").findElement(By.id("etCenter")).sendKeys(ip.getIp());

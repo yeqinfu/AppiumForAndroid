@@ -15,9 +15,13 @@ public class LoginActivityAction extends BaseActivityAction{
 
     }
 
-    public void toLoginActivity() {
-        //do nothing
+
+
+    @Override
+    public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
+        return false;
     }
+
     public void toNetSettingActivity(){
         driver.findElementById("tvSetting").click();
     }
