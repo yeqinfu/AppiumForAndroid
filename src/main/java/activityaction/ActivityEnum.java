@@ -105,17 +105,17 @@ public enum ActivityEnum {
 
     /**
      * 判断理论路径是否可行
-     *
+     * @param source 为了避免循环
      * @param target
      * @return
      */
-    public boolean canGoToTarget(ActivityEnum target) {
+    public boolean canGoToTarget(ActivityEnum source,ActivityEnum target) {
         if (this == target) {
             return true;
         }
         for (String child : childList) {
             ActivityEnum childActivityEnum = ActivityEnum.getActivityEnumByPath(child);
-            if (childActivityEnum.canGoToTarget(target)) {
+            if (childActivityEnum!=source&&childActivityEnum.canGoToTarget(source,target)) {
                 return true;
             }
         }
@@ -132,7 +132,7 @@ public enum ActivityEnum {
         //孩子节点是否可以进去
         for (String child : tempChildList) {
             ActivityEnum childActivityEnum = ActivityEnum.getActivityEnumByPath(child);
-            if (childActivityEnum.canGoToTarget(target)) {//子列表可以进去
+            if (childActivityEnum.canGoToTarget(this,target)) {//子列表可以进去
                 //无条件相信
                 ActivityAction currentAction = ActivityEnum.getActivityActionByPath(driver, activityPath);
 

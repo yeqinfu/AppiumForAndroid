@@ -36,7 +36,8 @@ public abstract class BaseActivityAction implements ActivityAction {
                 return;
             }
             webElement.click();
-        } catch (InterruptedException e) {
+        } catch (Throwable e) {
+            Utils.print("当前点击步骤出错"+id);
             e.printStackTrace();
         }
 

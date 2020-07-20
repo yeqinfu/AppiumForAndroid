@@ -40,6 +40,7 @@ public class LoginActivityAction extends BaseActivityAction{
     public void startLogin(TestIP ip, TestAccount account) {
         //设置IP 端口
         toNetSettingActivity();
+        sleep();
         NetSettingActivityAction netSettingActivityAction=new NetSettingActivityAction(driver);
         netSettingActivityAction.setAppIp(ip);
         sleep();

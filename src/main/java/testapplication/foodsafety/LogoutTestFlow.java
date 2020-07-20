@@ -17,7 +17,7 @@ public class LogoutTestFlow extends BaseTestFlow {
     }
 
     public void startTest() {
-
+        super.startTest();
 
         //去登录页面
         iRouter.currentToTarget(driver,ActivityEnum.LoginActivity);

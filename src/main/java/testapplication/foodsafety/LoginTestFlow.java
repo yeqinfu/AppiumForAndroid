@@ -24,6 +24,7 @@ public class LoginTestFlow extends BaseTestFlow {
 
 
     public void startTest() {
+        super.startTest();
         //登录流程第一步 确保在登录页面
         boolean result = iRouter.currentToTarget(driver, ActivityEnum.LoginActivity);
         if (result){//确保成功

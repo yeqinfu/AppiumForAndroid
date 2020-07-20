@@ -22,6 +22,7 @@ public class PageExploreFlow extends BaseTestFlow {
 
     @Override
     public void startTest() {
+        super.startTest();
         //执行进入关于产品页面
         iRouter.currentToTarget(driver, ActivityEnum.AboutActivity);
         //执行进入设置页面
