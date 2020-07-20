@@ -7,9 +7,9 @@ import utils.Utils;
 
 import java.util.List;
 
-import static activityaction.ActivityEnum.MaterialManagerActivity;
+import static activityaction.ActivityEnum.*;
 
-public class ManagerOperateActivityAction extends BaseActivityAction{
+public class ManagerOperateActivityAction extends BaseActivityAction {
     public ManagerOperateActivityAction(AndroidDriver driver) {
         super(driver);
     }
@@ -17,30 +17,39 @@ public class ManagerOperateActivityAction extends BaseActivityAction{
     @Override
     public void popCurrentActivity() {
 
-       clickBaseTitleBack();
+        clickBaseTitleBack();
     }
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
-        List<MobileElement> list= ((AndroidElement)driver.findElementById("rvOperator")).findElementsById("tvOperator");
+        List<MobileElement> list = ((AndroidElement) driver.findElementById("rvOperator")).findElementsById("tvOperator");
+        if (child == MaterialManagerActivity) {
+            toTargetPage(list, "食材管理");
+        }else if (child==DisinfectManagerActivity){
+            toTargetPage(list,"消毒管理");
+        }else if (child==PersonHealthyActivity){
+            toTargetPage(list,"人员健康");
+        }else if (child==ReservedRecordActivity){
+            toTargetPage(list,"留样操作");
 
-        try {
-            if (child==MaterialManagerActivity){
-
-                for (MobileElement item:list){
-
-                    if ("食材管理".equals(item.getText())){
-                        Utils.print("点击进入食材管理");
-                        clickDelay(item);
-                    }
-                }
-
-            }
-        }catch (Throwable throwable){
-            Utils.print("管理操作列表点击报错");
-            throwable.printStackTrace();
         }
 
+
         return checkCurrent(child);
+    }
+
+    private void toTargetPage(List<MobileElement> list,  String text) {
+        try {
+            for (MobileElement item : list) {
+                if (text.equals(item.getText())) {
+                    Utils.print("点击进入" + text);
+                    clickDelay(item);
+                }
+            }
+
+        } catch (Throwable throwable) {
+            Utils.print("以下报错可忽略" + text);
+            throwable.printStackTrace();
+        }
     }
 }

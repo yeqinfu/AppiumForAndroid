@@ -7,11 +7,23 @@ import utils.Utils;
  * 页面路由清单
  */
 public enum ActivityEnum {
-    MaterialManagerActivity("MaterialManagerActivity",".ui.list.MaterialManagerActivity",new String[]{
+    ReservedRecordActivity("ReservedRecordActivity",".ui.list.samplereserved.ReservedRecordActivity",new String[]{
+
+    }),
+    PersonHealthyActivity("PersonHealthyActivity",".ui.list.healthy.PersonHealthyActivity",new String[]{
+
+    }),
+    DisinfectManagerActivity("DisinfectManagerActivity",".ui.list.disinfectmanager.DisinfectManagerActivity",new String[]{
+
+    }),
+    MaterialManagerActivity("MaterialManagerActivity",".ui.list.materialmanager.MaterialManagerActivity",new String[]{
 
     }),
     ManagerOperateActivity("ManagerOperateActivity",".ui.list.platform.ManagerOperateActivity",new String[]{
-            MaterialManagerActivity.activityPath
+            MaterialManagerActivity.activityPath,
+            DisinfectManagerActivity.activityPath,
+            PersonHealthyActivity.activityPath,
+            ReservedRecordActivity.activityPath
     }),
     OperateChooseActivity("OperateChooseActivity",".ui.list.platform.OperateChooseActivity",new String[]{
             ManagerOperateActivity.activityPath
@@ -63,6 +75,12 @@ public enum ActivityEnum {
             return null;
         }
         switch (target) {
+            case ReservedRecordActivity:
+                return new ReservedRecordActivityAction(driver);
+            case PersonHealthyActivity:
+                return new PersonHealthyActivityAction(driver);
+            case DisinfectManagerActivity:
+                return new DisinfectManagerActivityAction(driver);
             case MaterialManagerActivity:
                 return new MaterialManagerActivityAction(driver);
             case ManagerOperateActivity:
