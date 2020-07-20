@@ -19,6 +19,6 @@ public class MaterialManagerTestFlow extends BaseTestFlow {
         toTargetActivity(ActivityEnum.MaterialAddActivity);
         MaterialAddActivityAction addActivityAction=new MaterialAddActivityAction(driver);
         addActivityAction.doAllActions();
-        toTargetActivity(ActivityEnum.MainActivity);
+     // toTargetActivity(ActivityEnum.MainActivity);
     }
 }
