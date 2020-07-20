@@ -2,6 +2,9 @@ package activityaction;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import utils.Utils;
 
@@ -32,6 +35,21 @@ public abstract class BaseActivityAction implements ActivityAction {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 向上滑动
+     */
+    protected void swipeUp(){
+        Dimension size = driver.manage().window().getSize();
+        int height = size.height;
+        int width = size.width;
+        //滑动
+        new AndroidTouchAction(driver)
+                .longPress(PointOption.point(width / 2, height/2))
+                .moveTo(PointOption.point(width/2,100))
+                .release()
+                .perform();
     }
     protected void clickDelay(WebElement webElement){
         try {

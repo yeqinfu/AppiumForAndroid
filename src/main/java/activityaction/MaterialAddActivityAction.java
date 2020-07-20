@@ -1,6 +1,10 @@
 package activityaction;
 
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.Dimension;
 
 public class MaterialAddActivityAction extends BaseActivityAction{
     public MaterialAddActivityAction(AndroidDriver driver) {
@@ -17,12 +21,20 @@ public class MaterialAddActivityAction extends BaseActivityAction{
         clickDelay("iivProductName");
         //选择一个默认的第一个产品
         clickDelay("tvSure");
-        //findItemInputView("iivBarCode","测试条码001");
         //数量3
         findItemInputView("iivPurchaseNumber","3");
-
+        //滑动
+        swipeUp();
         //选择图片
         clickDelay("ivAddImage");
+        new MultiImageSelectorActivityAction(driver).selectPic();
+        //继续滑动
+       // swipeUp();
+        //提交
+        clickDelay("tvSubmit");
+
+
+
         //
     }
 
