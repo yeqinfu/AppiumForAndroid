@@ -2,6 +2,8 @@ package activityaction;
 
 import io.appium.java_client.android.AndroidDriver;
 
+import static activityaction.ActivityEnum.OperateChooseActivity;
+
 /**
  * MainActivity范围内的动作放在这里
  *
@@ -26,6 +28,12 @@ public class MainActivityAction extends BaseActivityAction{
         }else if (child==ActivityEnum.AboutActivity){
             clickDelay("rBtnTabMe");
             clickDelay("rlAbout");
+        }else  if (child==OperateChooseActivity){
+            if (isExist("cvSchoolInfo")){//具体的单位
+                clickDelay("cvSchoolInfo");
+            }else{
+
+            }
         }
         return checkCurrent(child);
     }

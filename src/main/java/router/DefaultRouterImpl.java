@@ -34,6 +34,7 @@ public class DefaultRouterImpl implements IRouter{
       if (result==true){
          return true;
       }
+      sleep();
       //子节点没找到
       ActivityAction currentAtion=ActivityEnum.getActivityActionByPath(driver,driver.currentActivity());
       currentAtion.popCurrentActivity();
@@ -50,5 +51,13 @@ public class DefaultRouterImpl implements IRouter{
          }
       }
       return false;
+   }
+
+   private void sleep() {
+      try {
+         Thread.sleep(1000);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
    }
 }

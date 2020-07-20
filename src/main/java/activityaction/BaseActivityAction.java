@@ -13,6 +13,9 @@ public abstract class BaseActivityAction implements ActivityAction {
 
 
     }
+    protected void clickBaseTitleBack(){
+        clickDelay("title_left");
+    }
 
     public BaseActivityAction(AndroidDriver driver) {
         this.driver = driver;
@@ -20,11 +23,25 @@ public abstract class BaseActivityAction implements ActivityAction {
 
     @Override
     public boolean checkCurrent(ActivityEnum target) {
+        Utils.print("检查当前节点是否已经到了目标节点，当前"+driver.currentActivity()+"目标："+target.activityPath);
         return target == ActivityEnum.getActivityEnumByPath(driver.currentActivity());
     }
 
     protected boolean isExist(String id){
-        return driver.findElementById(id)!=null;
+        if (driver.findElementById(id)==null){
+            return false;
+        }
+        return true;
+    }
+    protected void clickDelay(WebElement webElement){
+        try {
+            Thread.sleep(1000);
+            webElement.click();
+        }catch (Throwable throwable){
+            Utils.print("当前点击步骤出错"+webElement.getText());
+
+            throwable.printStackTrace();
+        }
     }
     protected void clickDelay(String id) {
 
@@ -35,6 +52,7 @@ public abstract class BaseActivityAction implements ActivityAction {
                 Utils.print("当前页面ID"+id+"不存在");
                 return;
             }
+            Utils.print("点击了按钮："+id);
             webElement.click();
         } catch (Throwable e) {
             Utils.print("当前点击步骤出错"+id);

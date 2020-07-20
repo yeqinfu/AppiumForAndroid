@@ -7,6 +7,15 @@ import utils.Utils;
  * 页面路由清单
  */
 public enum ActivityEnum {
+    MaterialManagerActivity("MaterialManagerActivity",".ui.list.MaterialManagerActivity",new String[]{
+
+    }),
+    ManagerOperateActivity("ManagerOperateActivity",".ui.list.platform.ManagerOperateActivity",new String[]{
+            MaterialManagerActivity.activityPath
+    }),
+    OperateChooseActivity("OperateChooseActivity",".ui.list.platform.OperateChooseActivity",new String[]{
+            ManagerOperateActivity.activityPath
+    }),
     AboutActivity("AboutActivity",".ui.me.AboutActivity",new String[]{
 
     }),
@@ -19,7 +28,8 @@ public enum ActivityEnum {
     MainActivity("mainActivity", ".ui.MainActivity",
             new String[]{
                     SettingActivity.activityPath,
-                    AboutActivity.activityPath
+                    AboutActivity.activityPath,
+                    OperateChooseActivity.activityPath
             }
     ),
     NetSettingActivity("NetSettingActivity", ".ui.NetSettingActivity",
@@ -53,6 +63,12 @@ public enum ActivityEnum {
             return null;
         }
         switch (target) {
+            case MaterialManagerActivity:
+                return new MaterialManagerActivityAction(driver);
+            case ManagerOperateActivity:
+                return new ManagerOperateActivityAction(driver);
+            case OperateChooseActivity:
+                return new OperateChooseActivityAction(driver);
             case AboutActivity:
                 return new AboutActivityAction(driver);
             case MainActivity:
@@ -142,6 +158,8 @@ public enum ActivityEnum {
                     Utils.print("进入子节点成功" + childActivityEnum.activityPath);
                     return childActivityEnum.tryGoToTarget(driver, target, childActivityEnum.getChildList());
                 } else {
+                    Utils.print("进入子节点失败 " + childActivityEnum.activityPath);
+
                     currentAction.popCurrentActivity();
                 }
             }

@@ -3,6 +3,7 @@ package activityaction;
 import io.appium.java_client.android.AndroidDriver;
 import testaccount.TestAccount;
 import testaccount.TestIP;
+import utils.Utils;
 
 
 public class LoginActivityAction extends BaseActivityAction{
@@ -11,8 +12,9 @@ public class LoginActivityAction extends BaseActivityAction{
     }
 
     public void popCurrentActivity() {
-        driver.quit();
+     //   driver.quit();
 
+        Utils.print("登录页面调用了pop");
     }
 
 
@@ -30,6 +32,11 @@ public class LoginActivityAction extends BaseActivityAction{
 
     private void toMainActivity() {
         clickDelay("btnLogin");
+        Utils.print("登录页面比较慢 睡眠");
+        sleep();
+        sleep();
+        Utils.print("登录页面比较慢 睡眠结束");
+
     }
 
 
