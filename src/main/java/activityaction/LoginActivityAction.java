@@ -30,27 +30,25 @@ public class LoginActivityAction extends BaseActivityAction{
 
     private void toMainActivity() {
         clickDelay("btnLogin");
-
     }
 
 
     public void toNetSettingActivity(){
-        driver.findElementById("tvSetting").click();
+        clickDelay("tvSetting");
     }
 
     public void startLogin(TestIP ip, TestAccount account) {
         //设置IP 端口
         toNetSettingActivity();
-        sleep();
-        SettingActivityAction settingActivityAction=new SettingActivityAction(driver);
-        settingActivityAction.parseIP(ip);
+        NetSettingActivityAction netSettingActivityAction=new NetSettingActivityAction(driver);
+        netSettingActivityAction.setAppIp(ip);
         sleep();
         parseAccount(account);
         toMainActivity();
     }
 
     private void parseAccount(TestAccount account) {
-        driver.findElementById("etUserName").sendKeys("test");
-        driver.findElementById("etPassword").sendKeys("123456");
+        driver.findElementById("etUserName").sendKeys(account.getAccount());
+        driver.findElementById("etPassword").sendKeys(account.getPassword());
     }
 }

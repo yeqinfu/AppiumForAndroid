@@ -8,6 +8,7 @@ import io.appium.java_client.android.AndroidDriver;
  *
  */
 public interface ActivityAction {
+    void doAllActions();
     //退出当前activity
     void popCurrentActivity();
     boolean goToChild(AndroidDriver driver, ActivityEnum child);

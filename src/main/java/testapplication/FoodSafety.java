@@ -7,6 +7,7 @@ import testaccount.TestAccount;
 import testaccount.TestIP;
 import testapplication.foodsafety.LoginTestFlow;
 import testapplication.foodsafety.LogoutTestFlow;
+import testapplication.foodsafety.PageExploreFlow;
 import testflow.TestFlow;
 
 import java.net.MalformedURLException;
@@ -51,9 +52,12 @@ public class FoodSafety implements TestApplication {
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
         //加入一个登录测试流程
-        //list.add(new LogoutTestFlow(driver));
+
+        list.add(new LogoutTestFlow(driver));
 
         list.add(new LoginTestFlow(driver,ip,account));
+
+        list.add(new PageExploreFlow(driver));
     }
 
 

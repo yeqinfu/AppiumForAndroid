@@ -7,6 +7,9 @@ import utils.Utils;
  * 页面路由清单
  */
 public enum ActivityEnum {
+    AboutActivity("AboutActivity",".ui.me.AboutActivity",new String[]{
+
+    }),
 
     SettingActivity("settingActivity", ".ui.me.SettingActivity",
             new String[]{
@@ -15,7 +18,8 @@ public enum ActivityEnum {
             }),
     MainActivity("mainActivity", ".ui.MainActivity",
             new String[]{
-                    SettingActivity.activityPath
+                    SettingActivity.activityPath,
+                    AboutActivity.activityPath
             }
     ),
     NetSettingActivity("NetSettingActivity", ".ui.NetSettingActivity",
@@ -39,6 +43,35 @@ public enum ActivityEnum {
 
 
     ;
+    public static ActivityAction getActivityActionByPath(AndroidDriver driver){
+        return getActivityActionByPath(driver,driver.currentActivity());
+    }
+
+    public static ActivityAction getActivityActionByPath(AndroidDriver driver, String path) {
+        ActivityEnum target = getActivityEnumByPath(path);
+        if (target == null) {
+            return null;
+        }
+        switch (target) {
+            case AboutActivity:
+                return new AboutActivityAction(driver);
+            case MainActivity:
+                return new MainActivityAction(driver);
+            case LoginActivity:
+                return new LoginActivityAction(driver);
+            case SettingActivity:
+                return new SettingActivityAction(driver);
+            case NetSettingActivity:
+                return new NetSettingActivityAction(driver);
+            case LaunchActivity:
+                return new LaunchActionAction(driver);
+        }
+
+        return null;
+    }
+
+
+
     String activity;
     String activityPath;
     //当前activity能进到其他的activity有哪些？
@@ -66,27 +99,6 @@ public enum ActivityEnum {
                 return item;
             }
         }
-        return null;
-    }
-
-    public static ActivityAction getActivityActionByPath(AndroidDriver driver, String path) {
-        ActivityEnum target = getActivityEnumByPath(path);
-        if (target == null) {
-            return null;
-        }
-        switch (target) {
-            case MainActivity:
-                return new MainActivityAction(driver);
-            case LoginActivity:
-                return new LoginActivityAction(driver);
-            case SettingActivity:
-                return new SettingActivityAction(driver);
-            case NetSettingActivity:
-                return new NetSettingActivityAction(driver);
-            case LaunchActivity:
-                return new LaunchActionAction(driver);
-        }
-
         return null;
     }
 

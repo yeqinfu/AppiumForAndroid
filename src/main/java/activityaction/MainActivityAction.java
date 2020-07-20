@@ -16,21 +16,16 @@ public class MainActivityAction extends BaseActivityAction{
         driver.quit();
     }
 
-    /**
-     * 去登录页面
-     */
-    public void toLoginActivity() {
-        clickDelay("rBtnTabMe");
-        clickDelay("rlSetting");
-        new SettingActivityAction(driver).toLoginActivity();
 
-    }
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
         if (child==ActivityEnum.SettingActivity){
             clickDelay("rBtnTabMe");
             clickDelay("rlSetting");
+        }else if (child==ActivityEnum.AboutActivity){
+            clickDelay("rBtnTabMe");
+            clickDelay("rlAbout");
         }
         return checkCurrent(child);
     }
