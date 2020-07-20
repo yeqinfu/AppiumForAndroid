@@ -3,6 +3,7 @@ package activityaction;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import utils.Utils;
 
 import java.util.List;
 
@@ -23,16 +24,23 @@ public class ManagerOperateActivityAction extends BaseActivityAction{
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
         List<MobileElement> list= ((AndroidElement)driver.findElementById("rvOperator")).findElementsById("tvOperator");
 
-        if (child==MaterialManagerActivity){
+        try {
+            if (child==MaterialManagerActivity){
 
-            for (MobileElement item:list){
+                for (MobileElement item:list){
 
-                if (item.getText().equals("食材管理")){
-                    clickDelay(item);
+                    if ("食材管理".equals(item.getText())){
+                        Utils.print("点击进入食材管理");
+                        clickDelay(item);
+                    }
                 }
-            }
 
+            }
+        }catch (Throwable throwable){
+            Utils.print("管理操作列表点击报错");
+            throwable.printStackTrace();
         }
+
         return checkCurrent(child);
     }
 }

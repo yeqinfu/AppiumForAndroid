@@ -53,9 +53,9 @@ public class FoodSafety implements TestApplication {
 
         //加入一个登录测试流程
 
-        list.add(new LogoutTestFlow(driver));
+       // list.add(new LogoutTestFlow(driver));
 
-        list.add(new LoginTestFlow(driver,ip,account));
+      //  list.add(new LoginTestFlow(driver,ip,account));
 
         list.add(new PageExploreFlow(driver));
     }
