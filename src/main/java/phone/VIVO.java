@@ -3,7 +3,7 @@ package phone;
 public class VIVO implements TestDevice {
 
     public String getDeviceName() {
-        return " 89HQCA9PJFCUEEAQ";
+        return "89HQCA9PJFCUEEAQ";
     }
 
     public String getAutomationName() {

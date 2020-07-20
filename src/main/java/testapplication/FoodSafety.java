@@ -5,6 +5,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import phone.TestDevice;
 import testaccount.TestAccount;
 import testaccount.TestIP;
+import testflow.foodsafety.LoginTestFlow;
+import testflow.foodsafety.LogoutTestFlow;
 import testflow.foodsafety.MaterialManagerTestFlow;
 import testflow.TestFlow;
 
@@ -41,7 +43,7 @@ public class FoodSafety implements TestApplication {
         capabilities.setCapability("automationName", testDevice.getAutomationName());
         capabilities.setCapability("platformName", testDevice.getPlatformName());
         capabilities.setCapability("platformVersion", testDevice.getPlatformVersion());
-       capabilities.setCapability("skipDeviceInitialization", "true");
+        capabilities.setCapability("skipDeviceInitialization", "true");
         capabilities.setCapability("skipServerInstallation", "true");
         capabilities.setCapability("appPackage", "com.standards.schoolfoodsafetysupervision");
         capabilities.setCapability("appActivity", "com.standards.schoolfoodsafetysupervision.ui.LaunchActivity");
@@ -51,11 +53,11 @@ public class FoodSafety implements TestApplication {
 
         //加入一个登录测试流程
 
-       // list.add(new LogoutTestFlow(driver));
+         list.add(new LogoutTestFlow(driver));
 
-      //  list.add(new LoginTestFlow(driver,ip,account));
+          list.add(new LoginTestFlow(driver,ip,account));
 
-       // list.add(new PageExploreFlow(driver));
+        // list.add(new PageExploreFlow(driver));
         list.add(new MaterialManagerTestFlow(driver));
     }
 

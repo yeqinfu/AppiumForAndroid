@@ -65,13 +65,14 @@ public abstract class BaseActivityAction implements ActivityAction {
 
         try {
             Thread.sleep(1000);
-            WebElement webElement = driver.findElementById(id);
+            AndroidElement webElement = (AndroidElement) driver.findElementById(id);
             if (webElement==null){
                 Utils.print("当前页面ID"+id+"不存在");
                 return;
             }
-            Utils.print("点击了按钮："+id);
+
             webElement.click();
+            Utils.print("点击了按钮："+id);
         } catch (Throwable e) {
             Utils.print("当前点击步骤出错"+id);
             e.printStackTrace();

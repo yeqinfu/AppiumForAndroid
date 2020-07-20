@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 public class Main {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         //配置测试手机对象
-        TestDevice testDevice=new VIVO();//使用手机红米note7
+        TestDevice testDevice=new RedMiNote7();//使用手机红米note7
         //配置测试的环境
         TestIP ip=TestIP.std;//使用std测试环境
         //配置测试账号
