@@ -1,4 +1,4 @@
-package testapplication.foodsafety;
+package testflow.foodsafety;
 
 import activityaction.ActivityAction;
 import activityaction.ActivityEnum;

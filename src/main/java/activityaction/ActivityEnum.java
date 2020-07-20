@@ -7,6 +7,9 @@ import utils.Utils;
  * 页面路由清单
  */
 public enum ActivityEnum {
+    MultiImageSelectorActivity("MultiImageSelectorActivity","me.nereo.multi_image_selector.MultiImageSelectorActivity",new String[]{
+
+    }),
     ReservedRecordActivity("ReservedRecordActivity",".ui.list.samplereserved.ReservedRecordActivity",new String[]{
 
     }),
@@ -16,8 +19,11 @@ public enum ActivityEnum {
     DisinfectManagerActivity("DisinfectManagerActivity",".ui.list.disinfectmanager.DisinfectManagerActivity",new String[]{
 
     }),
-    MaterialManagerActivity("MaterialManagerActivity",".ui.list.materialmanager.MaterialManagerActivity",new String[]{
+    MaterialAddActivity("MaterialAddActivity",".ui.list.materialmanager.MaterialAddActivity",new String[]{
 
+    }),
+    MaterialManagerActivity("MaterialManagerActivity",".ui.list.materialmanager.MaterialManagerActivity",new String[]{
+            MaterialAddActivity.activityPath
     }),
     ManagerOperateActivity("ManagerOperateActivity",".ui.list.platform.ManagerOperateActivity",new String[]{
             MaterialManagerActivity.activityPath,
@@ -75,6 +81,10 @@ public enum ActivityEnum {
             return null;
         }
         switch (target) {
+            case MultiImageSelectorActivity:
+                return new MultiImageSelectorActivityAction(driver);
+            case MaterialAddActivity:
+                return new MaterialAddActivityAction(driver);
             case ReservedRecordActivity:
                 return new ReservedRecordActivityAction(driver);
             case PersonHealthyActivity:

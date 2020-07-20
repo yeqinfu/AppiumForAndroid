@@ -1,8 +1,6 @@
-package testapplication.foodsafety;
+package testflow.foodsafety;
 
-import activityaction.AboutActivityAction;
 import activityaction.ActivityEnum;
-import activityaction.SettingActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 import testflow.BaseTestFlow;
 import testflow.TestFlow;

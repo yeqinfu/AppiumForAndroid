@@ -1,4 +1,4 @@
-package testapplication.foodsafety;
+package testflow.foodsafety;
 
 import activityaction.ActivityEnum;
 import io.appium.java_client.android.AndroidDriver;

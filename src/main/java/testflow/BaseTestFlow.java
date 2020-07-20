@@ -1,5 +1,6 @@
 package testflow;
 
+import activityaction.ActivityEnum;
 import io.appium.java_client.android.AndroidDriver;
 import router.DefaultRouterImpl;
 import router.IRouter;
@@ -18,6 +19,9 @@ public class BaseTestFlow implements TestFlow {
         Utils.print("当前测试流:"+this.getClass().getSimpleName());
         sleep();
 
+    }
+    protected void toTargetActivity(ActivityEnum activityEnum){
+        iRouter.currentToTarget(driver,activityEnum);
     }
 
     private void sleep() {

@@ -14,6 +14,9 @@ public class MaterialManagerActivityAction extends BaseActivityAction{
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
-        return false;
+        if (child==ActivityEnum.MaterialAddActivity){
+            clickDelay("title_right");
+        }
+        return checkCurrent(child);
     }
 }
