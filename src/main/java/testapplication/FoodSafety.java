@@ -41,7 +41,7 @@ public class FoodSafety implements TestApplication {
         capabilities.setCapability("automationName", testDevice.getAutomationName());
         capabilities.setCapability("platformName", testDevice.getPlatformName());
         capabilities.setCapability("platformVersion", testDevice.getPlatformVersion());
-        capabilities.setCapability("skipDeviceInitialization", "true");
+       capabilities.setCapability("skipDeviceInitialization", "true");
         capabilities.setCapability("skipServerInstallation", "true");
         capabilities.setCapability("appPackage", "com.standards.schoolfoodsafetysupervision");
         capabilities.setCapability("appActivity", "com.standards.schoolfoodsafetysupervision.ui.LaunchActivity");
