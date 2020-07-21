@@ -72,9 +72,11 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
     public void testAddMaterial(String barcode,String purchaseNumber){
         //到添加食材页面
         toTargetActivity(ActivityEnum.MaterialAddActivity);
+
         MaterialAddActivityAction addActivityAction=new MaterialAddActivityAction(driver);
-        //判断是否是添加食材页面
         Assert.assertEquals(addActivityAction.checkCurrent(ActivityEnum.MaterialAddActivity), true);
+
+        //判断是否是添加食材页面
         addActivityAction.setPager(barcode,purchaseNumber);
 
     }

@@ -1,6 +1,7 @@
 package activityaction;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import testaccount.TestAccount;
 import testaccount.TestIP;
 import utils.Utils;
@@ -14,7 +15,13 @@ public class LoginActivityAction extends BaseActivityAction{
     public void popCurrentActivity() {
      //   driver.quit();
 
-        Utils.print("登录页面调用了pop");
+        Utils.print("登录页面调用了popz直接就是失败");
+        Assert.assertThrows(new Assert.ThrowingRunnable() {
+            @Override
+            public void run() throws Throwable {
+
+            }
+        });
     }
 
 
