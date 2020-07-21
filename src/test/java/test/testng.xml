@@ -4,5 +4,6 @@
         <packages>
             <package name="test.*"/>
         </packages>
+
     </test>
 </suite>

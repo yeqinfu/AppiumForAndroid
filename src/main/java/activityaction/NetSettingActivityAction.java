@@ -21,6 +21,11 @@ public class NetSettingActivityAction extends BaseActivityAction{
 
     }
 
+    public void setAppIpAndPort(String ip,String port){
+        findItemInputView("iivIP",ip);
+        findItemInputView("iivPort",port);
+        clickDelay("tvSubmit");
+    }
     public void setAppIp(TestIP ip){
         findItemInputView("iivIP",ip.getIp());
         findItemInputView("iivPort",ip.getPort());
