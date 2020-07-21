@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 安食智厨对象
@@ -48,17 +49,21 @@ public class FoodSafety implements TestApplication {
         capabilities.setCapability("appPackage", "com.standards.schoolfoodsafetysupervision");
         capabilities.setCapability("appActivity", "com.standards.schoolfoodsafetysupervision.ui.LaunchActivity");
         capabilities.setCapability("noReset", "true");
+
+        //设置全局隐性等待时间
+      //  driver.manage().timeouts().implicitlyWait(80000, TimeUnit.MILLISECONDS);
+
         //驱动配置
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
         //加入一个登录测试流程
 
-         list.add(new LogoutTestFlow(driver));
+        // list.add(new LogoutTestFlow(driver));
 
           list.add(new LoginTestFlow(driver,ip,account));
 
         // list.add(new PageExploreFlow(driver));
-        list.add(new MaterialManagerTestFlow(driver));
+      //  list.add(new MaterialManagerTestFlow(driver));
     }
 
 
