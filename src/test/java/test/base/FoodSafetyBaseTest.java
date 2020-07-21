@@ -54,4 +54,12 @@ public class FoodSafetyBaseTest extends BaseTest {
     public void tearDown() {
         driver.quit();
     }
+
+    protected void sleep() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

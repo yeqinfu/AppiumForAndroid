@@ -78,7 +78,12 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
 
         //判断是否是添加食材页面
         addActivityAction.setPager(barcode,purchaseNumber);
+        //多个数据测试需要睡眠一下，不然判断不准确
+        sleep();
+
 
     }
+
+
 
 }

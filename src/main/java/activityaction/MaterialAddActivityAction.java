@@ -40,6 +40,7 @@ public class MaterialAddActivityAction extends BaseActivityAction{
         // swipeUp();
         //提交
         clickDelay("tvSubmit");
+        sleep();
     }
     @Override
     public void popCurrentActivity() {
