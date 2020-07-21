@@ -30,7 +30,7 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
         NetSettingActivityAction netSettingActivityAction=new NetSettingActivityAction(driver);
         netSettingActivityAction.setAppIp(ip);
         //判断是否是否成功返回登录页面
-        Assert.assertEquals(activityAction.checkCurrent(ActivityEnum.LoginActivity),true);
+        Assert.assertEquals(activityAction.checkCurrent(ActivityEnum.LoginActivity),false);
     }
 
 }
