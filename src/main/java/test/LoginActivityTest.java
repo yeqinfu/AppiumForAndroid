@@ -17,6 +17,8 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
      */
     @Test
     public void testSettingIp(){
+        //去登录页面
+        toTargetActivity(ActivityEnum.LoginActivity);
         LoginActivityAction activityAction=new LoginActivityAction(driver);
         //点击登录
         activityAction.toNetSettingActivity();

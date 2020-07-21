@@ -1,5 +1,6 @@
 package test.base;
 
+import activityaction.ActivityEnum;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -7,6 +8,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import phone.RedMiNote7;
 import phone.TestDevice;
+import router.DefaultRouterImpl;
+import router.IRouter;
 import test.base.BaseTest;
 
 import java.net.MalformedURLException;
@@ -17,6 +20,10 @@ public class FoodSafetyBaseTest extends BaseTest {
     //远测测试配置对象
     DesiredCapabilities capabilities;
     TestDevice testDevice;
+    protected IRouter iRouter;
+    protected void toTargetActivity(ActivityEnum activityEnum){
+        iRouter.currentToTarget(driver,activityEnum);
+    }
     /**
      * 测试安食智厨基本设定
      *
@@ -25,6 +32,7 @@ public class FoodSafetyBaseTest extends BaseTest {
     public void setUp() throws MalformedURLException {
         testDevice=new RedMiNote7();
         capabilities = new DesiredCapabilities();
+        iRouter=new DefaultRouterImpl();
 
         //开始配置初始信息
         capabilities.setCapability("deviceName", testDevice.getDeviceName());
