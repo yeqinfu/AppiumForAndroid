@@ -16,28 +16,31 @@ public class MaterialAddActivityAction extends BaseActivityAction{
         super.doAllActions();
         //设置页面内容工作
         //条码
-        findItemInputView("iivBarCode","测试条码001");
-        //选择品名
-        clickDelay("iivProductName");
-        //选择一个默认的第一个产品
-        clickDelay("tvSure");
-        //数量3
-        findItemInputView("iivPurchaseNumber","3");
-        //滑动
-        swipeUp();
-        //选择图片
-        clickDelay("ivAddImage");
-        new MultiImageSelectorActivityAction(driver).selectPic();
-        //继续滑动
-       // swipeUp();
-        //提交
-        clickDelay("tvSubmit");
+
 
 
 
         //
     }
 
+    public void setPager(String barcode,String PurchaseNumber){
+        findItemInputView("iivBarCode",barcode);
+        //选择品名
+        clickDelay("iivProductName");
+        //选择一个默认的第一个产品
+        clickDelay("tvSure");
+        //数量3
+        findItemInputView("iivPurchaseNumber",PurchaseNumber);
+        //滑动
+        swipeUp();
+        //选择图片
+        clickDelay("ivAddImage");
+        new MultiImageSelectorActivityAction(driver).selectPic();
+        //继续滑动
+        // swipeUp();
+        //提交
+        clickDelay("tvSubmit");
+    }
     @Override
     public void popCurrentActivity() {
         clickBaseTitleBack();

@@ -3,6 +3,7 @@ package router;
 import activityaction.ActivityAction;
 import activityaction.ActivityEnum;
 import io.appium.java_client.android.AndroidDriver;
+import utils.Utils;
 
 /**
  * 路由默认实现类
@@ -36,13 +37,17 @@ public class DefaultRouterImpl implements IRouter{
       }
       sleep();
       //子节点没找到
+
+
       ActivityAction currentAtion=ActivityEnum.getActivityActionByPath(driver,driver.currentActivity());
+      Utils.print("所有的子节点都没找到。。。。"+driver.currentActivity());
       currentAtion.popCurrentActivity();
       //变成上层节点
       ActivityEnum parentEnum=ActivityEnum.getActivityEnumByPath(driver.currentActivity());
       for (String parent:parentEnum.getChildList()){
          ActivityEnum parentActivityEnum=ActivityEnum.getActivityEnumByPath(parent);
          if (parentActivityEnum!=currentActivityEnum){//刚从这个子节点倒退回来的，所以这里不用再次遍历
+            Utils.print(parentActivityEnum.getActivityPath()+"==="+currentActivityEnum.getActivityPath());
             boolean parentResult=currentToTarget(driver,target);
             if (parentResult==true){
                return true;

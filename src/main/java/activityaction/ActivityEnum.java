@@ -184,14 +184,49 @@ public enum ActivityEnum {
                 boolean result = currentAction.goToChild(driver, childActivityEnum);
                 if (result) {//进入成功
                     Utils.print("进入子节点成功" + childActivityEnum.activityPath);
-                    return childActivityEnum.tryGoToTarget(driver, target, childActivityEnum.getChildList());
+                    boolean dd= childActivityEnum.tryGoToTarget(driver, target, childActivityEnum.getChildList());
+                    if (dd==true){
+
+                        return true;
+                    }else{
+                        ActivityEnum.getActivityActionByPath(driver,driver.currentActivity()).popCurrentActivity();
+                        return false;
+                    }
                 } else {
                     Utils.print("进入子节点失败 " + childActivityEnum.activityPath);
+                    ActivityEnum newActivityEnum=ActivityEnum.getActivityEnumByPath(driver.currentActivity());
+                    //策略1 失败就直接退一级
+                    //currentAction.popCurrentActivity();
+                    //策略2 失败还是得判断是否进入到别的页面 是，才退出 不是 不退出
+                    //比较智能 但是无法克服 A->A也就是点击本来应该进入B 结果进入到A 恰巧上一级还是A 这样得话就卡在这里了
+                    //最后决定不支持A->A这种方式
+                    if (newActivityEnum==this){//如果尝试进入子节点一动不动 就不做动作
 
-                    currentAction.popCurrentActivity();
+                    }else{
+                        currentAction.popCurrentActivity();
+                    }
+
+
                 }
             }
         }
+        Utils.print("没有其他子节点可以进去");
         return false;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    public String getActivityPath() {
+        return activityPath;
+    }
+
+    public void setActivityPath(String activityPath) {
+        this.activityPath = activityPath;
     }
 }
