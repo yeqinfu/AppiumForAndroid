@@ -34,6 +34,10 @@ public class ManagerOperateActivityAction extends BaseActivityAction {
             toTargetPage(list, "供应商追溯");
         }else if (child == RiskWarningActivity) {
             toTargetPage(list, "风险预警");
+        }else if (child == AccDinnerActivity) {
+            toTargetPage(list, "陪餐记录");
+        }else if (child == TrainActivity) {
+            toTargetPage(list, "人员培训");
         }
 
 
@@ -48,7 +52,9 @@ public class ManagerOperateActivityAction extends BaseActivityAction {
                 PersonHealthyActivity,
                 ReservedRecordActivity,
                 SupplierTraceActivity,
-                RiskWarningActivity
+                RiskWarningActivity,
+                AccDinnerActivity,
+                TrainActivity,
 
         };
     }

@@ -7,9 +7,12 @@ import activityaction.NetSettingActivityAction;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.reporters.jq.Main;
 import test.base.FoodSafetyBaseTest;
 import testaccount.TestAccount;
 import testaccount.TestIP;
+
+import static activityaction.base.ActivityEnum.*;
 
 /**
  * 登录页面测试
@@ -80,8 +83,17 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
         addActivityAction.setPager(barcode,purchaseNumber);
         //多个数据测试需要睡眠一下，不然判断不准确
         sleep();
-
-
+    }
+    @Test
+    public void testAllManagerPager(){
+     /*   toTargetActivity(MaterialManagerActivity);
+        toTargetActivity(DisinfectManagerActivity);
+        toTargetActivity(PersonHealthyActivity);
+        toTargetActivity(ReservedRecordActivity);
+        toTargetActivity(SupplierTraceActivity);
+        toTargetActivity(RiskWarningActivity);*/
+        toTargetActivity(TrainActivity);
+        toTargetActivity(MainActivity);
     }
 
 
