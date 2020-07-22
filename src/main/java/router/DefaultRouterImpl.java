@@ -29,7 +29,14 @@ public class DefaultRouterImpl implements IRouter{
    public boolean currentToTarget(AndroidDriver driver, ActivityEnum target) {
 
       ActivityEnum currentActivityEnum=ActivityEnum.getActivityEnumByPath(driver.currentActivity());
-      boolean result=currentActivityEnum.tryGoToTarget(driver,target,currentActivityEnum.getChildList());
+      boolean result= false;
+      try {
+         result = currentActivityEnum.tryGoToTarget(driver,target,currentActivityEnum.getActivityActionClass().newInstance().getChildActivityEnum());
+      } catch (InstantiationException e) {
+         e.printStackTrace();
+      } catch (IllegalAccessException e) {
+         e.printStackTrace();
+      }
 
       //子节点找到了
       if (result==true){
@@ -44,17 +51,24 @@ public class DefaultRouterImpl implements IRouter{
       currentAtion.popCurrentActivity();
       //变成上层节点
       ActivityEnum parentEnum=ActivityEnum.getActivityEnumByPath(driver.currentActivity());
-      for (String parent:parentEnum.getChildList()){
-         ActivityEnum parentActivityEnum=ActivityEnum.getActivityEnumByPath(parent);
-         if (parentActivityEnum!=currentActivityEnum){//刚从这个子节点倒退回来的，所以这里不用再次遍历
-            Utils.print(parentActivityEnum.getActivityPath()+"==="+currentActivityEnum.getActivityPath());
-            boolean parentResult=currentToTarget(driver,target);
-            if (parentResult==true){
-               return true;
-            }
+      try {
+         ActivityAction parentActivityAction=parentEnum.getActivityActionClass().newInstance();
+         for (ActivityEnum parent:parentActivityAction.getChildActivityEnum()){
+            if (parent!=currentActivityEnum){//刚从这个子节点倒退回来的，所以这里不用再次遍历
+               Utils.print(parent.getActivityPath()+"==="+currentActivityEnum.getActivityPath());
+               boolean parentResult=currentToTarget(driver,target);
+               if (parentResult==true){
+                  return true;
+               }
 
+            }
          }
+      } catch (InstantiationException e) {
+         e.printStackTrace();
+      } catch (IllegalAccessException e) {
+         e.printStackTrace();
       }
+
       return false;
    }
 

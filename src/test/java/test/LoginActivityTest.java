@@ -36,14 +36,14 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
     public void testSettingIp(String ip, String port) {
         //去登录页面
         toTargetActivity(ActivityEnum.LoginActivity);
-        LoginActivityAction activityAction = new LoginActivityAction(driver);
+        LoginActivityAction activityAction = new LoginActivityAction();
         //点击登录
         activityAction.toNetSettingActivity();
         //判断是否是NetSettingActivity
         Assert.assertEquals(activityAction.checkCurrent(ActivityEnum.NetSettingActivity), true);
         //执行换ip
         //配置测试的环境
-        NetSettingActivityAction netSettingActivityAction = new NetSettingActivityAction(driver);
+        NetSettingActivityAction netSettingActivityAction = new NetSettingActivityAction();
         netSettingActivityAction.setAppIpAndPort(ip, port);
         //判断是否是否成功返回登录页面
         Assert.assertEquals(activityAction.checkCurrent(ActivityEnum.LoginActivity), true);
@@ -53,7 +53,7 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
     public void testLogin(){
         //去登录页面
         toTargetActivity(ActivityEnum.LoginActivity);
-        LoginActivityAction activityAction = new LoginActivityAction(driver);
+        LoginActivityAction activityAction = new LoginActivityAction();
         //设置
         activityAction.startLogin(TestIP.std, TestAccount.test);
         //判断是否是主页面
@@ -73,7 +73,7 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
         //到添加食材页面
         toTargetActivity(ActivityEnum.MaterialAddActivity);
 
-        MaterialAddActivityAction addActivityAction=new MaterialAddActivityAction(driver);
+        MaterialAddActivityAction addActivityAction=new MaterialAddActivityAction();
         Assert.assertEquals(addActivityAction.checkCurrent(ActivityEnum.MaterialAddActivity), true);
 
         //判断是否是添加食材页面

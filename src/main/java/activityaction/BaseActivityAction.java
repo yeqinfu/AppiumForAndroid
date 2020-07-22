@@ -11,6 +11,7 @@ import utils.Utils;
 public abstract class BaseActivityAction implements ActivityAction {
     protected AndroidDriver driver;
 
+
     @Override
     public void doAllActions() {
 
@@ -20,8 +21,9 @@ public abstract class BaseActivityAction implements ActivityAction {
         clickDelay("title_left");
     }
 
-    public BaseActivityAction(AndroidDriver driver) {
-        this.driver = driver;
+    public BaseActivityAction() {
+        Config config=Config.getInstance();
+        this.driver =config.driver;
     }
 
     @Override

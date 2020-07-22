@@ -2,11 +2,9 @@ package activityaction;
 
 import io.appium.java_client.android.AndroidDriver;
 
-public class MaterialManagerActivityAction extends BaseActivityAction{
-    public MaterialManagerActivityAction(AndroidDriver driver) {
-        super(driver);
-    }
+import static activityaction.ActivityEnum.MaterialAddActivity;
 
+public class MaterialManagerActivityAction extends BaseActivityAction{
     @Override
     public void popCurrentActivity() {
         clickBaseTitleBack();
@@ -14,9 +12,16 @@ public class MaterialManagerActivityAction extends BaseActivityAction{
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
-        if (child==ActivityEnum.MaterialAddActivity){
+        if (child== MaterialAddActivity){
             clickDelay("title_right");
         }
         return checkCurrent(child);
+    }
+
+    @Override
+    public ActivityEnum[] getChildActivityEnum() {
+        return new ActivityEnum[]{
+                MaterialAddActivity
+        };
     }
 }

@@ -6,11 +6,11 @@ import testaccount.TestAccount;
 import testaccount.TestIP;
 import utils.Utils;
 
+import static activityaction.ActivityEnum.MainActivity;
+import static activityaction.ActivityEnum.NetSettingActivity;
+
 
 public class LoginActivityAction extends BaseActivityAction{
-    public LoginActivityAction(AndroidDriver driver) {
-        super(driver);
-    }
 
     public void popCurrentActivity() {
      //   driver.quit();
@@ -28,13 +28,21 @@ public class LoginActivityAction extends BaseActivityAction{
 
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
-        if (child==ActivityEnum.NetSettingActivity){//登录页面进入
+        if (child== NetSettingActivity){//登录页面进入
             toNetSettingActivity();
-        }else if (child==ActivityEnum.MainActivity){
+        }else if (child== MainActivity){
             toMainActivity();
         }
 
         return checkCurrent(child);
+    }
+
+    @Override
+    public ActivityEnum[] getChildActivityEnum() {
+        return new ActivityEnum[]{
+                NetSettingActivity,
+                MainActivity
+        };
     }
 
     private void toMainActivity() {
@@ -55,7 +63,7 @@ public class LoginActivityAction extends BaseActivityAction{
         //设置IP 端口
         toNetSettingActivity();
         sleep();
-        NetSettingActivityAction netSettingActivityAction=new NetSettingActivityAction(driver);
+        NetSettingActivityAction netSettingActivityAction=new NetSettingActivityAction();
         netSettingActivityAction.setAppIp(ip);
         sleep();
         parseAccount(account);

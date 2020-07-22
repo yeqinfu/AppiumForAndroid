@@ -11,9 +11,7 @@ import utils.Utils;
 import java.util.List;
 
 public class MultiImageSelectorActivityAction extends BaseActivityAction{
-    public MultiImageSelectorActivityAction(AndroidDriver driver) {
-        super(driver);
-    }
+
 
     @Override
     public void popCurrentActivity() {
@@ -32,6 +30,11 @@ public class MultiImageSelectorActivityAction extends BaseActivityAction{
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
         return false;
+    }
+
+    @Override
+    public ActivityEnum[] getChildActivityEnum() {
+        return new ActivityEnum[0];
     }
 
     public void selectPic() {

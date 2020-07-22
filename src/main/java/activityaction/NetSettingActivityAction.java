@@ -5,9 +5,6 @@ import io.appium.java_client.android.AndroidElement;
 import testaccount.TestIP;
 
 public class NetSettingActivityAction extends BaseActivityAction{
-    public NetSettingActivityAction(AndroidDriver driver) {
-        super(driver);
-    }
 
     @Override
     public void popCurrentActivity() {
@@ -36,5 +33,12 @@ public class NetSettingActivityAction extends BaseActivityAction{
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
         return false;
+    }
+
+    @Override
+    public ActivityEnum[] getChildActivityEnum() {
+        return new ActivityEnum[]{
+
+        };
     }
 }

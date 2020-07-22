@@ -7,9 +7,6 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
 
 public class MaterialAddActivityAction extends BaseActivityAction{
-    public MaterialAddActivityAction(AndroidDriver driver) {
-        super(driver);
-    }
 
     @Override
     public void doAllActions() {
@@ -35,7 +32,7 @@ public class MaterialAddActivityAction extends BaseActivityAction{
         swipeUp();
         //选择图片
         clickDelay("ivAddImage");
-        new MultiImageSelectorActivityAction(driver).selectPic();
+        new MultiImageSelectorActivityAction().selectPic();
         //继续滑动
         // swipeUp();
         //提交
@@ -50,5 +47,10 @@ public class MaterialAddActivityAction extends BaseActivityAction{
     @Override
     public boolean goToChild(AndroidDriver driver, ActivityEnum child) {
         return false;
+    }
+
+    @Override
+    public ActivityEnum[] getChildActivityEnum() {
+        return new ActivityEnum[0];
     }
 }

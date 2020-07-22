@@ -10,9 +10,6 @@ import java.util.List;
 import static activityaction.ActivityEnum.*;
 
 public class ManagerOperateActivityAction extends BaseActivityAction {
-    public ManagerOperateActivityAction(AndroidDriver driver) {
-        super(driver);
-    }
 
     @Override
     public void popCurrentActivity() {
@@ -36,6 +33,17 @@ public class ManagerOperateActivityAction extends BaseActivityAction {
 
 
         return checkCurrent(child);
+    }
+
+    @Override
+    public ActivityEnum[] getChildActivityEnum() {
+        return new ActivityEnum[]{
+                MaterialManagerActivity,
+                DisinfectManagerActivity,
+                PersonHealthyActivity,
+                ReservedRecordActivity
+
+        };
     }
 
     private void toTargetPage(List<MobileElement> list,  String text) {

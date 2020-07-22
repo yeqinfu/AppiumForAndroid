@@ -3,76 +3,33 @@ package activityaction;
 import io.appium.java_client.android.AndroidDriver;
 import utils.Utils;
 
+import java.util.List;
+
 /**
  * 页面路由清单
  */
 public enum ActivityEnum {
-    MultiImageSelectorActivity("MultiImageSelectorActivity","me.nereo.multi_image_selector.MultiImageSelectorActivity",new String[]{
+    MultiImageSelectorActivity("me.nereo.multi_image_selector.MultiImageSelectorActivity", MultiImageSelectorActivityAction.class),
+    ReservedRecordActivity(".ui.list.samplereserved.ReservedRecordActivity", ReservedRecordActivityAction.class),
+    PersonHealthyActivity(".ui.list.healthy.PersonHealthyActivity", PersonHealthyActivityAction.class),
+    DisinfectManagerActivity(".ui.list.disinfectmanager.DisinfectManagerActivity", DisinfectManagerActivityAction.class),
+    MaterialAddActivity(".ui.list.materialmanager.MaterialAddActivity", MaterialAddActivityAction.class),
+    MaterialManagerActivity(".ui.list.materialmanager.MaterialManagerActivity", MaterialManagerActivityAction.class),
+    ManagerOperateActivity(".ui.list.platform.ManagerOperateActivity", ManagerOperateActivityAction.class),
+    OperateChooseActivity(".ui.list.platform.OperateChooseActivity", OperateChooseActivityAction.class),
+    AboutActivity(".ui.me.AboutActivity", AboutActivityAction.class),
+    SettingActivity(".ui.me.SettingActivity", SettingActivityAction.class),
+    MainActivity(".ui.MainActivity", MainActivityAction.class),
+    NetSettingActivity(".ui.NetSettingActivity", NetSettingActivityAction.class),
 
-    }),
-    ReservedRecordActivity("ReservedRecordActivity",".ui.list.samplereserved.ReservedRecordActivity",new String[]{
-
-    }),
-    PersonHealthyActivity("PersonHealthyActivity",".ui.list.healthy.PersonHealthyActivity",new String[]{
-
-    }),
-    DisinfectManagerActivity("DisinfectManagerActivity",".ui.list.disinfectmanager.DisinfectManagerActivity",new String[]{
-
-    }),
-    MaterialAddActivity("MaterialAddActivity",".ui.list.materialmanager.MaterialAddActivity",new String[]{
-
-    }),
-    MaterialManagerActivity("MaterialManagerActivity",".ui.list.materialmanager.MaterialManagerActivity",new String[]{
-            MaterialAddActivity.activityPath
-    }),
-    ManagerOperateActivity("ManagerOperateActivity",".ui.list.platform.ManagerOperateActivity",new String[]{
-            MaterialManagerActivity.activityPath,
-            DisinfectManagerActivity.activityPath,
-            PersonHealthyActivity.activityPath,
-            ReservedRecordActivity.activityPath
-    }),
-    OperateChooseActivity("OperateChooseActivity",".ui.list.platform.OperateChooseActivity",new String[]{
-            ManagerOperateActivity.activityPath
-    }),
-    AboutActivity("AboutActivity",".ui.me.AboutActivity",new String[]{
-
-    }),
-
-    SettingActivity("settingActivity", ".ui.me.SettingActivity",
-            new String[]{
-                    ".ui.LoginActivity"
-
-            }),
-    MainActivity("mainActivity", ".ui.MainActivity",
-            new String[]{
-                    SettingActivity.activityPath,
-                    AboutActivity.activityPath,
-                    OperateChooseActivity.activityPath
-            }
-    ),
-    NetSettingActivity("NetSettingActivity", ".ui.NetSettingActivity",
-            new String[]{
-            }),
-
-    LoginActivity("loginActivity",
-            ".ui.LoginActivity",
-
-            new String[]{
-                    NetSettingActivity.activityPath,
-                    MainActivity.activityPath,
-
-            }),
-    LaunchActivity("launchActivity",
-            ".ui.launchActivity",
-            new String[]{
-                    MainActivity.activityPath,
-                    LoginActivity.activityPath
-            }),
+    LoginActivity(".ui.LoginActivity",LoginActivityAction.class),
+    LaunchActivity(  ".ui.launchActivity",  LaunchActionAction.class),
 
 
     ;
-    public static ActivityAction getActivityActionByPath(AndroidDriver driver){
-        return getActivityActionByPath(driver,driver.currentActivity());
+
+    public static ActivityAction getActivityActionByPath(AndroidDriver driver) {
+        return getActivityActionByPath(driver, driver.currentActivity());
     }
 
     public static ActivityAction getActivityActionByPath(AndroidDriver driver, String path) {
@@ -80,60 +37,33 @@ public enum ActivityEnum {
         if (target == null) {
             return null;
         }
-        switch (target) {
-            case MultiImageSelectorActivity:
-                return new MultiImageSelectorActivityAction(driver);
-            case MaterialAddActivity:
-                return new MaterialAddActivityAction(driver);
-            case ReservedRecordActivity:
-                return new ReservedRecordActivityAction(driver);
-            case PersonHealthyActivity:
-                return new PersonHealthyActivityAction(driver);
-            case DisinfectManagerActivity:
-                return new DisinfectManagerActivityAction(driver);
-            case MaterialManagerActivity:
-                return new MaterialManagerActivityAction(driver);
-            case ManagerOperateActivity:
-                return new ManagerOperateActivityAction(driver);
-            case OperateChooseActivity:
-                return new OperateChooseActivityAction(driver);
-            case AboutActivity:
-                return new AboutActivityAction(driver);
-            case MainActivity:
-                return new MainActivityAction(driver);
-            case LoginActivity:
-                return new LoginActivityAction(driver);
-            case SettingActivity:
-                return new SettingActivityAction(driver);
-            case NetSettingActivity:
-                return new NetSettingActivityAction(driver);
-            case LaunchActivity:
-                return new LaunchActionAction(driver);
+        try {
+            return target.activityActionClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
-
         return null;
+
     }
 
 
-
-    String activity;
     String activityPath;
-    //当前activity能进到其他的activity有哪些？
-    private String[] childList;
+    //对应的action
+    Class<BaseActivityAction> activityActionClass;
 
-    ActivityEnum(String activity, String activityPath, String[] childList) {
-        this.activity = activity;
+    public Class<BaseActivityAction> getActivityActionClass() {
+        return activityActionClass;
+    }
+
+    public void setActivityActionClass(Class<BaseActivityAction> activityActionClass) {
+        this.activityActionClass = activityActionClass;
+    }
+
+    <T extends BaseActivityAction> ActivityEnum(String activityPath, Class<T> activityActionClass) {
         this.activityPath = activityPath;
-        this.childList = childList;
-    }
-
-
-    public String[] getChildList() {
-        return childList;
-    }
-
-    public void setChildList(String[] childList) {
-        this.childList = childList;
+        this.activityActionClass = (Class<BaseActivityAction>) activityActionClass;
     }
 
 
@@ -149,24 +79,33 @@ public enum ActivityEnum {
 
     /**
      * 判断理论路径是否可行
+     *
      * @param source 为了避免循环
      * @param target
      * @return
      */
-    public boolean canGoToTarget(ActivityEnum source,ActivityEnum target) {
+    public boolean canGoToTarget(ActivityEnum source, ActivityEnum target) {
         if (this == target) {
             return true;
         }
-        for (String child : childList) {
-            ActivityEnum childActivityEnum = ActivityEnum.getActivityEnumByPath(child);
-            if (childActivityEnum!=source&&childActivityEnum.canGoToTarget(source,target)) {
-                return true;
+        try {
+            ActivityAction current = activityActionClass.newInstance();
+
+            for (ActivityEnum child : current.getChildActivityEnum()) {
+                if (child != source && child.canGoToTarget(source, target)) {
+                    return true;
+                }
             }
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
+
         return false;
     }
 
-    public boolean tryGoToTarget(AndroidDriver driver, ActivityEnum target, String[] tempChildList) {
+    public boolean tryGoToTarget(AndroidDriver driver, ActivityEnum target, ActivityEnum[] tempChildList) {
         Utils.print("当前节点" + this.activityPath);
         Utils.print("目标节点" + target.activityPath);
         //当前就是指定要到的节点
@@ -174,35 +113,35 @@ public enum ActivityEnum {
             return true;
         }
         //孩子节点是否可以进去
-        for (String child : tempChildList) {
-            ActivityEnum childActivityEnum = ActivityEnum.getActivityEnumByPath(child);
-            if (childActivityEnum.canGoToTarget(this,target)) {//子列表可以进去
+        for (ActivityEnum child : tempChildList) {
+            if (child.canGoToTarget(this, target)) {//子列表可以进去
                 //无条件相信
                 ActivityAction currentAction = ActivityEnum.getActivityActionByPath(driver, activityPath);
 
-                Utils.print("尝试进入当前节点" + this.activityPath + "的子节点" + childActivityEnum.activityPath);
-                boolean result = currentAction.goToChild(driver, childActivityEnum);
+                Utils.print("尝试进入当前节点" + this.activityPath + "的子节点" + child.activityPath);
+                boolean result = currentAction.goToChild(driver, child);
                 if (result) {//进入成功
-                    Utils.print("进入子节点成功" + childActivityEnum.activityPath);
-                    boolean dd= childActivityEnum.tryGoToTarget(driver, target, childActivityEnum.getChildList());
-                    if (dd==true){
+                    Utils.print("进入子节点成功" + child.activityPath);
+                    ActivityAction childActivityAction = ActivityEnum.getActivityActionByPath(driver, child.activityPath);
+                    boolean dd = child.tryGoToTarget(driver, target, childActivityAction.getChildActivityEnum());
+                    if (dd == true) {
 
                         return true;
-                    }else{
-                        ActivityEnum.getActivityActionByPath(driver,driver.currentActivity()).popCurrentActivity();
+                    } else {
+                        ActivityEnum.getActivityActionByPath(driver, driver.currentActivity()).popCurrentActivity();
                         return false;
                     }
                 } else {
-                    Utils.print("进入子节点失败 " + childActivityEnum.activityPath);
-                    ActivityEnum newActivityEnum=ActivityEnum.getActivityEnumByPath(driver.currentActivity());
+                    Utils.print("进入子节点失败 " + child.activityPath);
+                    ActivityEnum newActivityEnum = ActivityEnum.getActivityEnumByPath(driver.currentActivity());
                     //策略1 失败就直接退一级
                     //currentAction.popCurrentActivity();
                     //策略2 失败还是得判断是否进入到别的页面 是，才退出 不是 不退出
                     //比较智能 但是无法克服 A->A也就是点击本来应该进入B 结果进入到A 恰巧上一级还是A 这样得话就卡在这里了
                     //最后决定不支持A->A这种方式
-                    if (newActivityEnum==this){//如果尝试进入子节点一动不动 就不做动作
+                    if (newActivityEnum == this) {//如果尝试进入子节点一动不动 就不做动作
 
-                    }else{
+                    } else {
                         currentAction.popCurrentActivity();
                     }
 
@@ -214,13 +153,6 @@ public enum ActivityEnum {
         return false;
     }
 
-    public String getActivity() {
-        return activity;
-    }
-
-    public void setActivity(String activity) {
-        this.activity = activity;
-    }
 
     public String getActivityPath() {
         return activityPath;
