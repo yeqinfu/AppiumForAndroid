@@ -1,6 +1,6 @@
 package testflow;
 
-import activityaction.ActivityEnum;
+import activityaction.base.ActivityEnum;
 import io.appium.java_client.android.AndroidDriver;
 import router.DefaultRouterImpl;
 import router.IRouter;

@@ -1,7 +1,7 @@
 package router;
 
-import activityaction.ActivityAction;
-import activityaction.ActivityEnum;
+import activityaction.base.ActivityAction;
+import activityaction.base.ActivityEnum;
 import io.appium.java_client.android.AndroidDriver;
 import utils.Utils;
 

@@ -1,8 +1,7 @@
-package activityaction;
+package activityaction.base;
 
+import activityaction.base.ActivityEnum;
 import io.appium.java_client.android.AndroidDriver;
-
-import java.util.List;
 
 /**
  * 在一个activity可能出现的操作抽象

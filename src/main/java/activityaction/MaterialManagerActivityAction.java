@@ -1,10 +1,12 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 
-import static activityaction.ActivityEnum.MaterialAddActivity;
+import static activityaction.base.ActivityEnum.MaterialAddActivity;
 
-public class MaterialManagerActivityAction extends BaseActivityAction{
+public class MaterialManagerActivityAction extends BaseActivityAction {
     @Override
     public void popCurrentActivity() {
         clickBaseTitleBack();

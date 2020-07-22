@@ -1,16 +1,18 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.testng.Assert;
 import testaccount.TestAccount;
 import testaccount.TestIP;
 import utils.Utils;
 
-import static activityaction.ActivityEnum.MainActivity;
-import static activityaction.ActivityEnum.NetSettingActivity;
+import static activityaction.base.ActivityEnum.MainActivity;
+import static activityaction.base.ActivityEnum.NetSettingActivity;
 
 
-public class LoginActivityAction extends BaseActivityAction{
+public class LoginActivityAction extends BaseActivityAction {
 
     public void popCurrentActivity() {
      //   driver.quit();

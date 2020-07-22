@@ -1,14 +1,16 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 
-import static activityaction.ActivityEnum.*;
+import static activityaction.base.ActivityEnum.*;
 
 /**
  * MainActivity范围内的动作放在这里
  *
  */
-public class MainActivityAction extends BaseActivityAction{
+public class MainActivityAction extends BaseActivityAction {
 
 
     public void popCurrentActivity() {

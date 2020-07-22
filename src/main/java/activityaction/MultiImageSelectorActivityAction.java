@@ -1,16 +1,17 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.Utils;
 
 import java.util.List;
 
-public class MultiImageSelectorActivityAction extends BaseActivityAction{
+public class MultiImageSelectorActivityAction extends BaseActivityAction {
 
 
     @Override

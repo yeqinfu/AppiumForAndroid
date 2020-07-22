@@ -1,7 +1,7 @@
 package test.base;
 
-import activityaction.ActivityEnum;
-import activityaction.Config;
+import activityaction.base.ActivityEnum;
+import activityaction.base.Config;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;

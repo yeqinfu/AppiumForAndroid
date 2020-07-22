@@ -1,10 +1,12 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 
-import static activityaction.ActivityEnum.ManagerOperateActivity;
+import static activityaction.base.ActivityEnum.ManagerOperateActivity;
 
-public class OperateChooseActivityAction extends BaseActivityAction{
+public class OperateChooseActivityAction extends BaseActivityAction {
 
     @Override
     public void popCurrentActivity() {

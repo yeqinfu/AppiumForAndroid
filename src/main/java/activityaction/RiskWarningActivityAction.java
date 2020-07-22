@@ -4,12 +4,10 @@ import activityaction.base.ActivityEnum;
 import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 
-public class PersonHealthyActivityAction extends BaseActivityAction {
-
+public class RiskWarningActivityAction extends BaseActivityAction {
     @Override
     public void popCurrentActivity() {
-        clickBaseTitleBack();
-
+       clickDelay("ivBack");
     }
 
     @Override
@@ -19,8 +17,6 @@ public class PersonHealthyActivityAction extends BaseActivityAction {
 
     @Override
     public ActivityEnum[] getChildActivityEnum() {
-        return new ActivityEnum[]{
-
-        };
+        return new ActivityEnum[0];
     }
 }

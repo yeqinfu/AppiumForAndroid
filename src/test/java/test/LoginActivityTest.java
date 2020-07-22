@@ -1,6 +1,6 @@
 package test;
 
-import activityaction.ActivityEnum;
+import activityaction.base.ActivityEnum;
 import activityaction.LoginActivityAction;
 import activityaction.MaterialAddActivityAction;
 import activityaction.NetSettingActivityAction;

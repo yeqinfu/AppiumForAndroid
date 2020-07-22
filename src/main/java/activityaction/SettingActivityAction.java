@@ -1,12 +1,12 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
-import testaccount.TestIP;
 
-import static activityaction.ActivityEnum.LoginActivity;
+import static activityaction.base.ActivityEnum.LoginActivity;
 
-public class SettingActivityAction extends BaseActivityAction{
+public class SettingActivityAction extends BaseActivityAction {
 
     public void popCurrentActivity() {
         clickDelay("title_left");

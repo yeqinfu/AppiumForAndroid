@@ -1,8 +1,10 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 
-public class ReservedRecordActivityAction extends BaseActivityAction{
+public class ReservedRecordActivityAction extends BaseActivityAction {
 
 
     @Override

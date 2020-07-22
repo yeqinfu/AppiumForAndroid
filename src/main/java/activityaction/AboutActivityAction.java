@@ -1,10 +1,10 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 
-import java.util.List;
-
-public class AboutActivityAction extends BaseActivityAction{
+public class AboutActivityAction extends BaseActivityAction {
 
 
     @Override

@@ -1,12 +1,10 @@
 package activityaction;
 
-import io.appium.java_client.TouchAction;
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.Dimension;
 
-public class MaterialAddActivityAction extends BaseActivityAction{
+public class MaterialAddActivityAction extends BaseActivityAction {
 
     @Override
     public void doAllActions() {

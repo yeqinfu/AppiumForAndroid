@@ -1,7 +1,7 @@
 package testflow.foodsafety;
 
-import activityaction.ActivityAction;
-import activityaction.ActivityEnum;
+import activityaction.base.ActivityAction;
+import activityaction.base.ActivityEnum;
 import activityaction.LoginActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 import testaccount.TestAccount;

@@ -1,10 +1,11 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import testaccount.TestIP;
 
-public class NetSettingActivityAction extends BaseActivityAction{
+public class NetSettingActivityAction extends BaseActivityAction {
 
     @Override
     public void popCurrentActivity() {

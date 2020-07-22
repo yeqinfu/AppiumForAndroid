@@ -1,11 +1,13 @@
 package activityaction;
 
+import activityaction.base.ActivityEnum;
+import activityaction.base.BaseActivityAction;
 import io.appium.java_client.android.AndroidDriver;
 
-import static activityaction.ActivityEnum.LoginActivity;
-import static activityaction.ActivityEnum.MainActivity;
+import static activityaction.base.ActivityEnum.LoginActivity;
+import static activityaction.base.ActivityEnum.MainActivity;
 
-public class LaunchActionAction extends BaseActivityAction{
+public class LaunchActionAction extends BaseActivityAction {
 
 
     @Override

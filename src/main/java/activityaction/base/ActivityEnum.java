@@ -1,15 +1,15 @@
-package activityaction;
+package activityaction.base;
 
+import activityaction.*;
 import io.appium.java_client.android.AndroidDriver;
 import utils.Utils;
-
-import java.util.List;
 
 /**
  * 页面路由清单
  */
 public enum ActivityEnum {
-    MultiImageSelectorActivity("me.nereo.multi_image_selector.MultiImageSelectorActivity", MultiImageSelectorActivityAction.class),
+    RiskWarningActivity(".ui.list.riskwarning.RiskWarningActivity", RiskWarningActivityAction.class),
+    SupplierTraceActivity(".ui.list.supplier.SupplierTraceActivity", SupplierTraceActivityAction.class),
     ReservedRecordActivity(".ui.list.samplereserved.ReservedRecordActivity", ReservedRecordActivityAction.class),
     PersonHealthyActivity(".ui.list.healthy.PersonHealthyActivity", PersonHealthyActivityAction.class),
     DisinfectManagerActivity(".ui.list.disinfectmanager.DisinfectManagerActivity", DisinfectManagerActivityAction.class),
@@ -21,9 +21,9 @@ public enum ActivityEnum {
     SettingActivity(".ui.me.SettingActivity", SettingActivityAction.class),
     MainActivity(".ui.MainActivity", MainActivityAction.class),
     NetSettingActivity(".ui.NetSettingActivity", NetSettingActivityAction.class),
-
     LoginActivity(".ui.LoginActivity",LoginActivityAction.class),
     LaunchActivity(  ".ui.launchActivity",  LaunchActionAction.class),
+    MultiImageSelectorActivity("me.nereo.multi_image_selector.MultiImageSelectorActivity", MultiImageSelectorActivityAction.class),
 
 
     ;
