@@ -69,6 +69,9 @@ public abstract class BaseActivityAction implements ActivityAction {
             throwable.printStackTrace();
         }*/
     }
+    protected AndroidElement findElementById(String id){
+        return (AndroidElement) driver.findElementById(id);
+    }
     protected void clickIfExist(String id){
         if (isExist(id)){
             clickDelay(id);
@@ -92,7 +95,13 @@ public abstract class BaseActivityAction implements ActivityAction {
         }
 
     }
-
+    protected void sleep(int second) {
+        try {
+            Thread.sleep(1000*second);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     protected void sleep() {
         try {
             Thread.sleep(1000);

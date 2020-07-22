@@ -51,5 +51,11 @@ public class FoodSafetyBaseTest extends BaseTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    } protected void sleep(int second) {
+        try {
+            Thread.sleep(1000*second);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

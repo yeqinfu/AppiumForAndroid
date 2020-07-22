@@ -8,6 +8,7 @@ import utils.Utils;
  * 页面路由清单
  */
 public enum ActivityEnum {
+    PlayerActivity("com.standards.libhikvision.ui.PlayerActivity", PlayerActivityAction.class),
     IndexActivity("com.standards.libhikvision.ui.IndexActivity", IndexActivityAction.class),
     TrainActivity(".ui.list.training.TrainActivity", TrainActivityAction.class),
     AccDinnerActivity(".ui.list.dinner.AccDinnerActivity", AccDinnerActivityAction.class),

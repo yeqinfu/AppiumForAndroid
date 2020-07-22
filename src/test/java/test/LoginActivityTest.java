@@ -1,5 +1,6 @@
 package test;
 
+import activityaction.IndexActivityAction;
 import activityaction.base.ActivityEnum;
 import activityaction.LoginActivityAction;
 import activityaction.MaterialAddActivityAction;
@@ -97,6 +98,21 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
         toTargetActivity(IndexActivity);
 
         Assert.assertEquals(isInActivity(IndexActivity),true);
+    }
+
+    /**
+     * 测试所有的视频监控是否可以播放
+     */
+    @Test
+    public void testAllVideoPlay(){
+        //到当前单位的视频首页
+        toTargetActivity(IndexActivity);
+        //太慢了 加载等待五秒
+        sleep(5);
+        new IndexActivityAction().clickAllVideo();
+        //最后停留在首页
+        Assert.assertEquals(isInActivity(IndexActivity),true);
+
     }
 
 
