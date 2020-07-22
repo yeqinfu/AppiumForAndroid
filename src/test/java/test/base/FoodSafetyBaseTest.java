@@ -36,6 +36,9 @@ public class FoodSafetyBaseTest extends BaseTest {
 
 
     }
+    protected boolean isInActivity(ActivityEnum target){
+        return ActivityEnum.getActivityEnumByPath(driver.currentActivity())==target;
+    }
 
     @AfterClass
     public void tearDown() {

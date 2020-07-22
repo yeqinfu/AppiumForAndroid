@@ -50,8 +50,6 @@ public class LoginActivityAction extends BaseActivityAction {
     private void toMainActivity() {
         clickDelay("btnLogin");
         Utils.print("登录页面比较慢 睡眠");
-        sleep();
-        sleep();
         Utils.print("登录页面比较慢 睡眠结束");
 
     }
@@ -64,10 +62,8 @@ public class LoginActivityAction extends BaseActivityAction {
     public void startLogin(TestIP ip, TestAccount account) {
         //设置IP 端口
         toNetSettingActivity();
-        sleep();
         NetSettingActivityAction netSettingActivityAction=new NetSettingActivityAction();
         netSettingActivityAction.setAppIp(ip);
-        sleep();
         parseAccount(account);
         toMainActivity();
     }

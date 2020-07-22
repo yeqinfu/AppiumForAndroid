@@ -10,6 +10,7 @@ import router.IRouter;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class Config {
     protected AndroidDriver<WebElement> driver;
@@ -56,7 +57,7 @@ public class Config {
             e.printStackTrace();
         }
         //设置全局隐性等待时间
-        //  driver.manage().timeouts().implicitlyWait(80000, TimeUnit.MILLISECONDS);
+         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         instance = new Config(driver,capabilities,testDevice,iRouter);
     }
 

@@ -33,10 +33,15 @@ public abstract class BaseActivityAction implements ActivityAction {
     }
 
     protected boolean isExist(String id){
-        if (driver.findElementById(id)==null){
-            return false;
+        try {
+            if (driver.findElementById(id)!=null){
+                return true;
+            }
+        }catch (Throwable throwable){
+            throwable.printStackTrace();
         }
-        return true;
+
+        return false;
     }
 
     /**
@@ -54,13 +59,19 @@ public abstract class BaseActivityAction implements ActivityAction {
                 .perform();
     }
     protected void clickDelay(WebElement webElement){
-        try {
+        webElement.click();
+      /*  try {
             Thread.sleep(1000);
-            webElement.click();
+
         }catch (Throwable throwable){
             Utils.print("当前点击步骤出错"+webElement.getText());
 
             throwable.printStackTrace();
+        }*/
+    }
+    protected void clickIfExist(String id){
+        if (isExist(id)){
+            clickDelay(id);
         }
     }
     protected void clickDelay(String id) {

@@ -29,11 +29,11 @@ public class MainActivityAction extends BaseActivityAction {
             clickDelay("rBtnTabMe");
             clickDelay("rlAbout");
         }else  if (child==OperateChooseActivity){
-            if (isExist("cvSchoolInfo")){//具体的单位
-                clickDelay("cvSchoolInfo");
-            }else{
+            clickIfExist("cvSchoolInfo");
 
-            }
+        }else if (child==IndexActivity){
+           clickIfExist("llVideo");
+
         }
         return checkCurrent(child);
     }
@@ -43,7 +43,8 @@ public class MainActivityAction extends BaseActivityAction {
         return new ActivityEnum[]{
                 SettingActivity,
                 AboutActivity,
-                OperateChooseActivity
+                OperateChooseActivity,
+                IndexActivity
 
         };
     }

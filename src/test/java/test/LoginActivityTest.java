@@ -92,8 +92,11 @@ public class LoginActivityTest extends FoodSafetyBaseTest {
         toTargetActivity(ReservedRecordActivity);
         toTargetActivity(SupplierTraceActivity);
         toTargetActivity(RiskWarningActivity);*/
-        toTargetActivity(TrainActivity);
-        toTargetActivity(MainActivity);
+        toTargetActivity(LoginActivity);
+        new LoginActivityAction().startLogin(TestIP.std,TestAccount.test);
+        toTargetActivity(IndexActivity);
+
+        Assert.assertEquals(isInActivity(IndexActivity),true);
     }
 
 
